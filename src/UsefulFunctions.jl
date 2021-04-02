@@ -1,6 +1,16 @@
 module UsefulFunctions
 
 """
+	DiracDelta(input::Float64,δ::Float64 = 1e-3)
+
+Useful function in Dirac Delta Function in a numerical integration.
+"""
+
+function DiracDelta(input, δ = 1e-3)
+	return exp(-input^2/(4*δ))/(2*sqrt(pi*δ))
+end
+
+"""
 	PrincipleValue(x::Float64,ϵ::Float64 = 1e-3)
 
 Useful function in Principle Value Integration.
@@ -42,25 +52,34 @@ function numberF(temp, μ, Energy)
     return 1/(1+exp(β*(Energy - μ)))
 end
 
-"""
-	σ1(temp,μ, κ=0.05, M=1.0)
+function itp(momentum::Float64,n::Int64,list::Array)
 
-"""
-function σ1(temp,μ, κ=0.05, M=1.0)
-    β = 1/temp
-	
-    σ₁(σ) = (1 + 2*cosh(β*μ)*exp(-β*σ) + exp(-2*β*σ) - exp(β*(M - σ + (π*κ/σ))))
-	
-    result = fzero(σ₁,0.001,2)
-	
-    ## For the case when there is no zero in the interval
-	if (result == 2.0 || result == 0.001)
-        result = 0.0
+    index1 = Int64(floor(n*momentum))
+    index2 = Int64(ceil(n*momentum))
+
+    if index1==0
+        return list[1]
+    elseif index2>n
+        return list[n]
+    else
+        if index1 == index2
+            return list[index1]
+        else
+            return list[index1] + (list[index2] - list[index1])*(n*momentum - index1)
+        end
     end
-	
-    return result
 end
 
-export PrincipleValue, numberF, σ1, fzero
+@doc raw"""
+    function interp(n::Int64,list::Array)
+This function returns the interpolated function between 0 and 1 given an Array.
+"""
+function interp(list::Array)
+	n = length(list)
+    itp2(momentum::Float64) = itp(momentum,n,list)
+    return itp2
+end
+
+export DiracDelta, PrincipleValue, numberF, fzero, interp
 
 end # module
