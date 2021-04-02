@@ -3,7 +3,7 @@ module UsefulFunctions
 """
 	DiracDelta(input::Float64,δ::Float64 = 1e-3)
 
-Useful function in Dirac Delta Function in a numerical integration.
+Dirac Delta Function that can be used in a numerical integration.
 """
 
 function DiracDelta(input, δ = 1e-3)
@@ -50,6 +50,16 @@ Returns the number density at a given `Energy`, chemical potential `μ` and `tem
 function numberF(temp, μ, Energy)
 	β = 1/temp
     return 1/(1+exp(β*(Energy - μ)))
+end
+
+"""
+	numberB(temp::Float64, μ::Float64, Energy::Float64)
+
+Returns the number density at a given `Energy`, chemical potential `μ` and `temp` for Bosonic Species.
+"""
+function numberB(temp, μ, Energy)
+	β = 1/temp
+    return 1/(1 - exp(β*(Energy - μ)))
 end
 
 function itp(momentum::Float64,n::Int64,list::Array)
