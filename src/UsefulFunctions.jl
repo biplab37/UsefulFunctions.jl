@@ -89,7 +89,9 @@ function interp(list::Array)
     itp2(momentum::Float64) = itp(momentum,n,list)
     return itp2
 end
+
 include("root_finding.jl")
+include("diffeqn.jl")
 
 export DiracDelta, PrincipleValue, numberF, fzero, interp
 
