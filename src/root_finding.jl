@@ -1,4 +1,11 @@
-function NewtonMethod(func::Function, Jacobian,initial_guess,iteration=1000)
+@doc raw"""
+    NewtonMethod(func::Function, Jacobian::Function,initial_guess::Array,iteration=100)
+
+uses the Newton method toi find zeros in more than one dimensions.
+$$x_{n+1} = x_n - J^{-1}(x_n)f(x_n)$$
+
+"""
+function NewtonMethod(func::Function, Jacobian,initial_guess,iteration=100)
 	for i in 1:iteration
 		initial_guess -= inv(Jacobian(initial_guess))*func(initial_guess)
 	end
@@ -6,6 +13,16 @@ function NewtonMethod(func::Function, Jacobian,initial_guess,iteration=1000)
 	return initial_guess
 end
 
+
+@doc raw"""
+    NewtonRaphson(f::Function,initial_guess;tol=1e-3,ϵ=1e-3,maxiter=20)
+
+Uses Newton Raphson Method to find zero of a given function `f` starting from an `initial_guess`.
+
+$$x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$$
+
+where discreet derivatives are used when functional form of the derivative are not given as input.
+"""
 function NewtonRaphson(f::Function,initial_guess;tol=1e-3,ϵ=1e-3,maxiter=20)
 	x_old = initial_guess
 	x_new = x_old
@@ -23,6 +40,13 @@ function NewtonRaphson(f::Function,initial_guess;tol=1e-3,ϵ=1e-3,maxiter=20)
 	return x_new
 end
 
+
+"""
+    brent(f::Function, x0::Number, x1::Number, args::Tuple=(); xtol::AbstractFloat=1e-4, ytol=1e-6, maxiter::Integer=20)
+
+The function uses [Brent's Method](https://en.wikipedia.org/wiki/Brent's_method) to find zero inside the given interval (`x0`,`x1`).
+Might fail if there are multiple zeros inside the interval.
+"""
 function brent(f::Function, x0::Number, x1::Number, args::Tuple=(); xtol::AbstractFloat=1e-4, ytol=1e-6, maxiter::Integer=20)
 	EPS = eps(Float64)
 	y0 = f(x0,args...)
@@ -85,7 +109,13 @@ function brent(f::Function, x0::Number, x1::Number, args::Tuple=(); xtol::Abstra
 	error("Max iteration exceeded")
 end
 
-function broyden(fun, jaco, x, iter=50, ftol=1e-7, verbose=false)
+"""
+    broyden(fun, jaco, x, iter=50, ftol=1e-7, verbose=false)
+
+Uses [Broyden's method](https://en.wikipedia.org/wiki/Broyden's_method) to find zero
+of a multidimensional function.
+"""
+function broyden(fun::Function, jaco::Function, x, iter=50, ftol=1e-7, verbose=false)
     msg = "Maximum number of iterations reached."
     J = jaco(x)
     for cont = 1:iter
@@ -111,7 +141,13 @@ function broyden(fun, jaco, x, iter=50, ftol=1e-7, verbose=false)
     return x
 end
 
-function bisection(func, start, finish, iteration=20)
+"""
+    bisection(func::Function,start::Number,finish::Number,iteration::Integer=20)
+
+Finds the zero of a function `func` inside a given interval (`start`,`finish`). Might fail 
+if there are multiple zeros or no zeros inside the interval.
+"""
+function bisection(func::Function, start::Number, finish::Number, iteration::Integer=20)
 	mid = (start + finish)/2.0
 
     for i in 1:iteration
