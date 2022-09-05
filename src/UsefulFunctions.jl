@@ -92,6 +92,7 @@ end
 
 include("root_finding.jl")
 include("diffeqn.jl")
+include("separable.jl")
 
 export DiracDelta, PrincipleValue, numberF, fzero, interp
 
