@@ -6,6 +6,13 @@ function next_func(func::Function,p0)
     return g
 end
 
+"""
+    terms3(f,p)
+
+Write a given function f as a sum of three separble functions and returns those functions.
+
+p(points) (Array)   : Three points where the functions to be evaluated. See theory.
+"""
 function terms3(f::Function,p)
 
     F1(x,y) = f(x,y)
