@@ -1,28 +1,38 @@
-## This file contains the code to write a bivariate function as a sum of separable functions.
-## f(x,y) ≈ ∑ᵢ gᵢ(x)gᵢ(y)
+"""
+    terms(f::Function,Λ::Float64,n::Int64)
 
+Returns the terms for the separable representation of the function `f` given by
+f(p,p') = ∑ᵢ gᵢ(p)gᵢ(p') where gᵢ are the terms returned by this function.
+
+# Arguments
+- `f::Function`: The function to be represented.
+- `Λ::Float64`: Momentum cutoff.
+- `n::Int64`: Number of terms in approximation to be returned.
+"""
+function terms(f::Function,Λ::Float64,n::Int64)
+    points = collect(range(0,Λ,length=n))
+    func_list = []
+    cur_F(x,y) = f(x,y)
+    push!(func_list,cur_F)
+    for j=1:(n-1)
+        cur_F = next_func(cur_F,points[j])
+        push!(func_list,cur_F)
+    end
+    return red_arg_list(func_list,points)
+end
+
+## Helper functions
 function next_func(func::Function,p0)
     g(x,y) = func(x,y) - func(x,p0)*func(p0,y)/func(p0,p0)
     return g
 end
 
-"""
-    terms3(f,p)
-
-Write a given function f as a sum of three separble functions and returns those functions.
-
-p(points) (Array)   : Three points where the functions to be evaluated. See theory.
-"""
-function terms3(f::Function,p)
-
-    F1(x,y) = f(x,y)
-    F2 = next_func(F1,p[1])
-    F3 = next_func(F2,p[2])
-
-    f1(q) = F1(q,p[1])
-    f2(q) = F2(q,p[2])
-    f3(q) = F3(q,p[3])
-    return f1,f2,f3
+function red_arg(f::Function,point::Float64)
+    return x -> f(x,point)/sqrt(f(point,point))
 end
 
-export terms3
+function red_arg_list(f_list,points)
+    return [red_arg(f_list[i],points[i]) for i=1:length(f_list)]
+end
+
+export terms
