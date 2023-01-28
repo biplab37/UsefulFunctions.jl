@@ -1,4 +1,4 @@
-"""Solves (system of) Ordinary differential equations using the Runge-Kutta method.
+@doc raw"""Solves (system of) Ordinary differential equations using the Runge-Kutta method.
     function rk4(F,x0,t1,t2,n,p)
 
 Args:
@@ -26,7 +26,7 @@ function rk4(F,x0,t1,t2,n,p)
     return x
 end
 
-"""Solves (system of) Ordinary differential equations using the Euler method.
+@doc raw"""Solves (system of) Ordinary differential equations using the Euler method.
     function euler(F,x0,t1,t2,n,p)
 
 Args:
