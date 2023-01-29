@@ -1,5 +1,7 @@
 # UsefulFunctions.jl
 
+[![codecov](https://codecov.io/gh/biplab37/UsefulFunctions.jl/branch/main/graph/badge.svg?token=FDIMBABK92)](https://codecov.io/gh/biplab37/UsefulFunctions.jl)
+
 This Package contains some of the useful functions that I often use in my code. Having all of them in a separate package increases code reusability and make code more concise.
 
 ## Usage
