@@ -115,7 +115,7 @@ end
 Uses [Broyden's method](https://en.wikipedia.org/wiki/Broyden's_method) to find zero
 of a multidimensional function.
 """
-function broyden(fun::Function, jaco::Function, x, iter=50, ftol=1e-7, verbose=false)
+function broyden(fun::Function, jaco::Function, x; iter=50, ftol=1e-7, verbose=false)
     msg = "Maximum number of iterations reached."
     J = jaco(x)
     for cont = 1:iter

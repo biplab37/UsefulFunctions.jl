@@ -1,5 +1,7 @@
 module UsefulFunctions
 
+using LinearAlgebra
+
 """
 	DiracDelta(input::Float64,δ::Float64 = 1e-3)
 
@@ -95,6 +97,6 @@ include("diffeqn.jl")
 include("separable.jl")
 include("integration.jl")
 
-export DiracDelta, PrincipleValue, numberF, fzero, interp
+export DiracDelta, PrincipleValue, numberF, fzero, interp, numberB
 
 end # module
