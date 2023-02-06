@@ -13,11 +13,11 @@ function DiracDelta(input, δ = 1e-3)
 end
 
 """
-	PrincipleValue(x::Float64,ϵ::Float64 = 1e-3)
+	PrincipalValue(x::Float64,ϵ::Float64 = 1e-3)
 
-Useful function in Principle Value Integration.
+Useful function in Principal Value Integration.
 """
-function PrincipleValue(x,ϵ = 1e-3)
+function PrincipalValue(x,ϵ = 1e-3)
 	if abs(x)<ϵ
 		return 0.0
 	else
@@ -97,6 +97,6 @@ include("diffeqn.jl")
 include("separable.jl")
 include("integration.jl")
 
-export DiracDelta, PrincipleValue, numberF, fzero, interp, numberB
+export DiracDelta, PrincipalValue, numberF, fzero, interp, numberB
 
 end # module
