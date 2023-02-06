@@ -31,6 +31,11 @@ end
         @test bisection(sq,0.,2.0) ≈ 0.0 atol=1e-5
         @test bisection(sq, 0., 2., 15) == 2^(-15)
     end
+    @testset "fzero" begin
+        @test fzero(f, 0., 2.) ≈ 1.0 atol=1e-5
+        @test fzero(sq,0.,2.0) ≈ 0.0 atol=1e-5
+        @test fzero(sq, 0., 2., 15) == 2^(-15)
+    end
     @testset "NewtonRaphson" begin
         @test NewtonRaphson(f, x0) ≈ 1.0 atol=1e-5
     end
@@ -72,5 +77,25 @@ euler(F,x0,t1,t2,500,0.01)
     @testset "RK4" begin
         @test rk4(F,x0,t1,t2,50,0.01) ≈ 0.10 atol=1e-2
     end
+end
 
+@testset "General Functions" begin
+    @testset "Dirac Delta" begin
+        @test DiracDelta(0.5) ≈ 0.0 atol=1e-10
+        @test DiracDelta(0.0) > 1.0
+        @test DiracDelta(0.1,1e-4) > 1e-10
+    end
+
+    @testset "PrincipalValue" begin
+        @test PrincipalValue(0.0) == 0.0
+        @test PrincipalValue(0.01,0.005) == 100.0
+        @test PrincipalValue(0.001,0.01) == 0.0
+    end
+
+end
+
+@testset "Interpolation" begin
+    @test interp(collect(1:10))(0.05) == 1.0
+    @test interp(collect(1:10))(0.95) == 9.5
+    @test interp(collect(1:10))(0.45) == 4.5
 end
