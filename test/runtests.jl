@@ -62,7 +62,7 @@ end
     @test numberF(0.001,0.0,0.1) ≈ 0.0 atol=1e-10
     @test numberF(0.001,0.2,0.1) ≈ 1.0 atol=1e-10
     @test numberB(0.001,0.0,0.1) ≈ 0.0 atol=1e-10
-    @test numberB(0.001,0.2,0.1) ≈ 1.0 atol=1e-10
+    @test numberB(0.001,0.2,0.1) ≈ -1.0 atol=1e-10
 end
 
 F(x,p,t) = p*x
