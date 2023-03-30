@@ -50,8 +50,17 @@ end
 Returns the number density at a given `Energy`, chemical potential `μ` and `temp` for Fermionic Species.
 """
 function numberF(temp, μ, Energy)
-	β = 1/temp
-    return 1/(1+exp(β*(Energy - μ)))
+    if temp < 0
+        error("Temperature cannot be negative")
+    elseif temp<1e-5
+        if Energy>μ
+            return 0.0
+        else
+            return 1.0
+        end
+    else
+        return 1.0/(1.0 + exp((Energy - μ)/temp))
+    end
 end
 
 """
@@ -60,8 +69,17 @@ end
 Returns the number density at a given `Energy`, chemical potential `μ` and `temp` for Bosonic Species.
 """
 function numberB(temp, μ, Energy)
-	β = 1/temp
-    return 1/(1 - exp(β*(Energy - μ)))
+    if temp < 0
+        error("Temperature cannot be negative")
+    elseif temp<1e-5
+        if Energy>μ
+            return 0.0
+        else
+            return 1.0
+        end
+    else
+        return 1.0/(1.0 - exp((Energy-μ)/temp))
+    end
 end
 
 function itp(momentum::Float64,n::Int64,list::Array)
