@@ -75,10 +75,10 @@ function numberB(temp, μ, Energy)
         if Energy>μ
             return 0.0
         else
-            return 1.0
+            return -1.0
         end
     else
-        return 1.0/(1.0 - exp((Energy-μ)/temp))
+        return 1.0/(exp((Energy-μ)/temp) - 1.0)
     end
 end
 
