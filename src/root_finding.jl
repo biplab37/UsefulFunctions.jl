@@ -165,18 +165,14 @@ end
 
 Finds the zero of a function `f` inside a given interval (`a`,`b`) using interval arithmetic.
 """
-function interval_root(f::Function, a::Number, b::Number, tol::Number=1e-5)
+function interval_roots(f::Function, a::Number, b::Number, tol::Number=1e-5)
     res = IntervalRootFinding.roots(f, a .. b, Newton, tol)
-    root = []
+    root = Float64[]
     for r in res
         mid = (r.interval.lo + r.interval.hi) / 2
-        if r.status == :unique
-            push!(root, mid)
-        elseif r.status == :unknown && isapprox(f(mid), 0, atol=tol)
-            push!(root, mid)
-        end
+        push!(root, mid)
     end
     return root
 end
 
-export bisection, NewtonMethod, NewtonRaphson, brent, broyden
+export bisection, NewtonMethod, NewtonRaphson, brent, broyden, interval_roots
