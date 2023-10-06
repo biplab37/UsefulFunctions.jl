@@ -53,7 +53,7 @@ end
         @test brent(sq, 0.0, 2.0) ≈ 0.0 atol = 1e-5
     end
     @testset "Broyden" begin
-        @test broyden(f, df, x0) ≈ 1.0 atol = 1e-5
+        @test broyden(f, df, x1) ≈ 1.0 atol = 1e-5
         @test broyden(x -> [x[1]^2 - 2, x[2]^2 - 4], x -> [2x[1] 0; 0 2x[2]], [1.0, 3.0]) ≈ [√2, 2]
     end
 end
