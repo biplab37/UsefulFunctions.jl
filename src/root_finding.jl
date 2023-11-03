@@ -13,7 +13,6 @@ function NewtonMethod(func::Function, Jacobian, initial_guess, iteration=100)
     return initial_guess
 end
 
-
 @doc raw"""
     NewtonRaphson(f::Function,initial_guess;tol=1e-3,ϵ=1e-3,maxiter=20)
 
@@ -38,7 +37,6 @@ function NewtonRaphson(f::Function, initial_guess; tol=1e-3, ϵ=1e-3, maxiter=20
 
     return x_new
 end
-
 
 """
     brent(f::Function, x0::Number, x1::Number, args::Tuple=(); xtol::AbstractFloat=1e-4, ytol=1e-6, maxiter::Integer=20)
@@ -165,8 +163,8 @@ end
 
 Finds the zero of a function `f` inside a given interval (`a`,`b`) using interval arithmetic.
 """
-function interval_roots(f::Function, a::Number, b::Number, tol::Number=1e-5)
-    res = IntervalRootFinding.roots(f, a..b)
+function interval_roots(f::Function, a::Number, b::Number)
+    res = IntervalRootFinding.roots(f, a .. b)
     if length(res) == 0
         @warn "No roots found in the given interval"
         return nothing

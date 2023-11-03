@@ -16,12 +16,6 @@ function PVintegral(f::Function, a, b, c, integrate::Function)
     end
 end
 
-function _principal_symmetric(f, a, b, c, integrate)
-    fsym = _symmetrize(f, a, c)
-    fsing = _sub_singularity(fsym)
-    return integrate(x -> f(x) / (x - c), 2c - a, b) + integrate(fsing, -1.0, 1.0)
-end
-
 function _symmetrize(f::Function, a, c)
     return x -> f((c - a)x + c)
 end
