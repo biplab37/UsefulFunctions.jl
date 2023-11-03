@@ -1,7 +1,7 @@
 module UsefulFunctions
 
 using LinearAlgebra, IntervalArithmetic, IntervalRootFinding
-using ForwardDiff 
+using ForwardDiff
 
 """
 	DiracDelta(input::Float64,δ::Float64 = 1e-3)
@@ -115,6 +115,8 @@ include("root_finding.jl")
 include("diffeqn.jl")
 include("separable.jl")
 include("integration.jl")
+include("principal_value.jl")
+include("numerical_diff.jl")
 
 export DiracDelta, PrincipalValue, numberF, fzero, interp, numberB
 
