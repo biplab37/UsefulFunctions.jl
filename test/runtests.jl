@@ -5,8 +5,6 @@ sq(x) = x^2
 f(x) = x^2 - 1
 df(x) = 2x
 
-
-
 x_init = 0.0
 x_final = 2.0
 
@@ -98,5 +96,13 @@ end
     @test interp(collect(1:10))(0.05) == 1.0
     @test interp(collect(1:10))(0.95) == 9.5
     @test interp(collect(1:10))(0.45) == 4.5
+end
+
+@testset "Numerical Differentiation" begin
+    @test UsefulFunctions._derivative(x -> x^2, 1.0) ≈ 2.0 atol = 1e-10
+end
+
+@testset "Separable Potential" begin
+    @test terms((x, y) -> exp(-x^2 - y^2), 2, 1.0)[1](0.0) ≈ 1.0 atol = 1e-10
 end
 

@@ -1,7 +1,8 @@
 module UsefulFunctions
 
-using LinearAlgebra, IntervalArithmetic, IntervalRootFinding
-using ForwardDiff
+using LinearAlgebra
+# using IntervalArithmetic, IntervalRootFinding
+# using ForwardDiff
 
 """
 	DiracDelta(input::Float64,δ::Float64 = 1e-3)

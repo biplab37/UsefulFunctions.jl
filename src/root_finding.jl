@@ -158,27 +158,27 @@ function bisection(func::Function, start::Number, finish::Number, iteration::Int
     return mid
 end
 
-"""
-    interval_root(f::Function, a::Number, b::Number, tol::Number=1e-5)
-
-Finds the zero of a function `f` inside a given interval (`a`,`b`) using interval arithmetic.
-"""
-function interval_roots(f::Function, a::Number, b::Number)
-    res = IntervalRootFinding.roots(f, a .. b)
-    if length(res) == 0
-        @warn "No roots found in the given interval"
-        return nothing
-    elseif length(res) == 1
-        return (res[1].interval.lo + res[1].interval.hi) / 2
-    else
-        root = Float64[]
-        for r in res
-            mid = (r.interval.lo + r.interval.hi) / 2
-            push!(root, mid)
-        end
-        return root
-    end
-end
+# """
+#     interval_root(f::Function, a::Number, b::Number, tol::Number=1e-5)
+#
+# Finds the zero of a function `f` inside a given interval (`a`,`b`) using interval arithmetic.
+# """
+# function interval_roots(f::Function, a::Number, b::Number)
+#     res = IntervalRootFinding.roots(f, a .. b)
+#     if length(res) == 0
+#         @warn "No roots found in the given interval"
+#         return nothing
+#     elseif length(res) == 1
+#         return (res[1].interval.lo + res[1].interval.hi) / 2
+#     else
+#         root = Float64[]
+#         for r in res
+#             mid = (r.interval.lo + r.interval.hi) / 2
+#             push!(root, mid)
+#         end
+#         return root
+#     end
+# end
 
 # function interval_roots_arg(f::Function, a::Number, b::Number, arg; tol=1e-5)
 #     deriv = x -> derivative(y->f(y,first(arg)),x)
@@ -200,4 +200,4 @@ end
 #     end
 # end
 
-export bisection, NewtonMethod, NewtonRaphson, brent, broyden, interval_roots
+export bisection, NewtonMethod, NewtonRaphson, brent, broyden
