@@ -12,7 +12,7 @@ function PVintegral(f::Function, a, b, c, integrate::Function)
     if a < c < b
         return _principal_asymmetric(f, a, b, c, integrate)
     else
-        return integrate(f, a, b)
+        return integrate(x -> f(x) / (x - c), a, b)
     end
 end
 
