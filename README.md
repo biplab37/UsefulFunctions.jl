@@ -6,12 +6,16 @@ This Package contains some of the useful functions that I often use in my code. 
 
 ## Usage
 
-Add the package using `Pkg`
+Add the package from REPL
 
 ```julia-repl
 ]add https://github.com/biplab37/UsefulFunctions.jl
 ```
-then start using it
+or using `Pkg`
+```julia
+import Pkg; Pkg.add(url="https://github.com/biplab37/UsefulFunctions.jl")
+```
+then start using it with
 
 ```julia-repl
 using UsefulFunctions
