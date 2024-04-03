@@ -10,7 +10,7 @@ Args:
     p (array): Parameters.
 """
 
-function rk4(F, x0, t1, t2, p; steps=1000, save=false)
+function rk4(F, x0, t1::Float64, t2::Float64, p; steps=1000, save=false)
     t = t1
     h = (t2 - t1) / steps
     x = x0
@@ -47,7 +47,7 @@ Args:
     t2 (float): Final time.
     n (int): Number of steps.
     p (array): Parameters."""
-function euler(F, x0, t1, t2, p; steps=1000, save=false)
+function euler(F, x0, t1::Float64, t2::Float64, p; steps=1000, save=false)
     t = t1
     h = (t2 - t1) / steps
     x = x0

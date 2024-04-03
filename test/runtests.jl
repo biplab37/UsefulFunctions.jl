@@ -66,14 +66,13 @@ end
 F(x, p, t) = p * x
 t1 = 0.0
 t2 = 1.0
-euler(F, x0, t1, t2, 500, 0.01)
 
 @testset "Differential Eqn" begin
     @testset "Euler" begin
-        @test euler(F, x0, t1, t2, 50, 0.01) ≈ 0.10 atol = 1e-2
+        @test euler(F, x0, t1, t2, 0.01, steps=50) ≈ 0.10 atol = 1e-2
     end
     @testset "RK4" begin
-        @test rk4(F, x0, t1, t2, 50, 0.01) ≈ 0.10 atol = 1e-2
+        @test rk4(F, x0, t1, t2, 0.01, steps=50) ≈ 0.10 atol = 1e-2
     end
 end
 
