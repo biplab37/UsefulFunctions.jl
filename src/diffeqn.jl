@@ -9,12 +9,18 @@ Args:
     n (int): Number of steps.
     p (array): Parameters.
 """
-function rk4(F, x0, t1, t2, n, p)
+
+function rk4(F, x0, t1, t2, p; steps=1000, save=false)
     t = t1
-    h = (t2 - t1) / n
+    h = (t2 - t1) / steps
     x = x0
 
-    for _ in 1:n
+    if save
+        xlist = Vector{typeof(x0)}(undef, steps + 1)
+        xlist[1] = x0
+    end
+
+    for i in 1:steps
         k1 = F(x, p, t)
         k2 = F(x .+ k1 * (h / 2), p, t + (h / 2))
         k3 = F(x .+ k2 * (h / 2), p, t + (h / 2))
@@ -22,8 +28,13 @@ function rk4(F, x0, t1, t2, n, p)
 
         x += h * (k1 .+ 2 * k2 .+ 2 * k3 .+ k4) / 6
         t += h
+
+        if save
+            xlist[i+1] = x
+        end
     end
-    return x
+
+    return save ? xlist : x
 end
 
 @doc raw"""Solves (system of) Ordinary differential equations using the Euler method.
@@ -36,16 +47,25 @@ Args:
     t2 (float): Final time.
     n (int): Number of steps.
     p (array): Parameters."""
-function euler(F, x0, t1, t2, n, p)
+function euler(F, x0, t1, t2, p; steps=1000, save=false)
     t = t1
-    h = (t2 - t1) / n
+    h = (t2 - t1) / steps
     x = x0
 
-    for _ in 1:n
+    if save
+        xlist = Vector{typeof(x0)}(undef, steps + 1)
+        xlist[1] = x0
+    end
+
+    for i in 1:steps
         x += h * F(x, p, t)
         t += h
+        if save
+            xlist[i+1] = x
+        end
     end
-    return x
+
+    return save ? xlist : x
 end
 
 export rk4, euler
