@@ -9,8 +9,7 @@ f(p,p') = ∑ᵢ gᵢ(p)gᵢ(p') where gᵢ are the terms returned by this funct
 - `Λ::Float64`: Momentum cutoff.
 - `n::Int64`: Number of terms in approximation to be returned.
 """
-function terms(f::Function, n::Int64, Λ::Float64)
-    points = collect(range(0, Λ, length=n))
+function _terms(f::Function, points, n)
     func_list = []
     cur_F(x, y) = f(x, y)
     push!(func_list, cur_F)
@@ -19,6 +18,16 @@ function terms(f::Function, n::Int64, Λ::Float64)
         push!(func_list, cur_F)
     end
     return red_arg_list(func_list, points)
+end
+
+function terms(f::Function, n::Int64, Λ::Float64)
+    points = collect(range(0, Λ, length=n))
+    return _terms(f, points, n)
+end
+
+function terms(f::Function, points)
+    n = length(points)
+    return _terms(f, points, n)
 end
 
 function terms(f::Function, n::Int64)

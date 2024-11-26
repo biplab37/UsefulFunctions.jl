@@ -6,7 +6,6 @@ Base.@kwdef struct Pade
     f_approx::Function
 end
 
-## pade approximation
 """
     pade_approximation(x_values, f_values, m, n)
 
