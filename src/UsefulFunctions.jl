@@ -118,6 +118,7 @@ include("separable.jl")
 include("integration.jl")
 include("principal_value.jl")
 include("numerical_diff.jl")
+include("pade_approx.jl")
 
 export DiracDelta, PrincipalValue, numberF, fzero, interp, numberB
 
