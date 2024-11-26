@@ -34,9 +34,13 @@ end
 function pade_approximation(f::Function, m, n, interval)
     a, b = interval
     num = m + n + 1
-    x_values = @. (a + b) / 2 + (b - a) * cos((π * (2 * (1:n) - 1)) / (2num)) / 2
+    x_values = chebyshev_nodes(a, b, num)
     f_values = f.(x_values)
     return pade_approximation(x_values, f_values, m, n)
 end
 
-export pade_approximation
+function chebyshev_nodes(a, b, n)
+    return @. (a + b) / 2 + (b - a) * cos((π * (2 * (1:n) - 1)) / (2n)) / 2
+end
+
+export pade_approximation, chebyshev_nodes
