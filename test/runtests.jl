@@ -99,9 +99,9 @@ end
 
 @testset "Numerical Differentiation" begin
     @test UsefulFunctions._derivative(x -> x^2, 1.0) ≈ 2.0 atol = 1e-10
-    @test UsefulFunctions._first_derivative_smooth(x -> x^2, 1.0) ≈ 2.0 atol 1e-10
-    @test UsefulFunctions._second_derivative(x -> x^2, 1.0) ≈ 2.0 atol 1e-10
-    @test UsefulFunctions._sg_filter_second_derivative(x -> x^2, 1.0) ≈ 2.0 atol 1e-10
+    @test UsefulFunctions._first_derivative_smooth(x -> x^2, 1.0) ≈ 2.0 atol = 1e-10
+    @test UsefulFunctions._second_derivative(x -> x^2, 1.0) ≈ 2.0 atol = 1e-10
+    @test UsefulFunctions._sg_filter_second_derivative(x -> x^2, 1.0) ≈ 2.0 atol = 1e-10
 end
 
 @testset "Separable Potential" begin
