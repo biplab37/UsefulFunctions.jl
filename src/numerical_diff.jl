@@ -11,5 +11,5 @@ function _sg_filter_second_derivative(f, x; dx=1e-2)
 end
 
 function _first_derivative_smooth(f, x; dx=1e-2)
-    return (-2 * f(x - 2 * dx) - f(x + dx) + f(x + dx) + 2 * f(x + 2 * dx)) / (10 * dx)
+    return (-2 * f(x - 2 * dx) - f(x - dx) + f(x + dx) + 2 * f(x + 2 * dx)) / (10 * dx)
 end
