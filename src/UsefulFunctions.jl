@@ -112,6 +112,21 @@ function interp(list::Array)
     return itp2
 end
 
+@doc raw"""
+    threaded_loop(iter, func_eval)
+
+This function returns loops over the `iter` and evaluate the function `func_eval`
+for each value in multiple threads and returns an array of result.
+"""
+function threaded_loop(iter, func_eval)
+    data = zeros(length(iter))
+
+    Threads.@threads for i in eachindex(iter)
+        data[i] = func_eval(iter[i])
+    end
+    return data
+end
+
 include("root_finding.jl")
 include("diffeqn.jl")
 include("separable.jl")
