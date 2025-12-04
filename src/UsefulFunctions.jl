@@ -135,7 +135,8 @@ include("principal_value.jl")
 include("numerical_diff.jl")
 include("pade_approx.jl")
 include("kramer_kronig.jl")
+include("filters.jl")
 
-export DiracDelta, PrincipalValue, numberF, fzero, interp, numberB
+export DiracDelta, PrincipalValue, numberF, fzero, interp, numberB, savitzky_golay_filter_53, moving_average_filter
 
 end # module
