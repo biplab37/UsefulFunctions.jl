@@ -5,8 +5,21 @@
 UsefulFunctions.bisection
 ```
 
-## Newton-Raphson
+## Newton's Method
 
 ```@docs
-NewtonRaphson
+UsefulFunctions.NewtonMethod
+UsefulFunctions.NewtonRaphson
+```
+
+## Brent's Method
+
+```@docs
+UsefulFunctions.brent
+```
+
+## Broyden's Method
+
+```@docs
+UsefulFunctions.broyden
 ```

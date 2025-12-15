@@ -9,7 +9,6 @@ Args:
     n (int): Number of steps.
     p (array): Parameters.
 """
-
 function rk4(F, x0, t1::Float64, t2::Float64, p; steps=1000, save=false)
     t = t1
     h = (t2 - t1) / steps
@@ -46,7 +45,8 @@ Args:
     t1 (float): Initial time.
     t2 (float): Final time.
     n (int): Number of steps.
-    p (array): Parameters."""
+    p (array): Parameters.
+"""
 function euler(F, x0, t1::Float64, t2::Float64, p; steps=1000, save=false)
     t = t1
     h = (t2 - t1) / steps

@@ -9,7 +9,6 @@ using LinearAlgebra
 
 Dirac Delta Function that can be used in a numerical integration.
 """
-
 function DiracDelta(input, δ=1e-3)
     return exp(-input^2 / (4 * δ)) / (2 * sqrt(pi * δ))
 end
