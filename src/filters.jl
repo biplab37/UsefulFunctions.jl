@@ -1,8 +1,12 @@
 # This file contains code of various filters to smothen data
 
-# Savitzky-Golay filter
+"""
+    savitzky_golay_filter_53(data::Vector{Float64})
+
+Applies a 5-point, 3rd-order Savitzky-Golay filter to the input data vector.
+"""
 function savitzky_golay_filter_53(data::Vector{Float64})
-    
+
     # 5-point, 3rd-order Savitzky-Golay filter coefficients
     half_window = div(5, 2)
     coeffs = [-3, 12, 17, 12, -3] ./ 35  # Coefficients for cubic SG filter with window size 5
@@ -22,7 +26,11 @@ function savitzky_golay_filter_53(data::Vector{Float64})
     return filtered_data
 end
 
-# Moving average filter
+"""
+    moving_average_filter(data::Vector{Float64}, window_size::Int)
+
+Applies a moving average filter to the input data vector with the specified window size.
+"""
 function moving_average_filter(data::Vector{Float64}, window_size::Int)
 
     half_window = div(window_size, 2)
