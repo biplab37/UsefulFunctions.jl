@@ -1,7 +1,7 @@
 # Useful Functions
 ---
 
-A package containing some of the functions that I regularly use in my code. Not an exhaustive list. But I use this package as a dependency in many of my other bigger projects.
+A package containing some of the functions that I regularly use in my code. Not an exhaustive list. But I use this package as a dependency in many of my other bigger projects. As it is a personal package, I have not added it to the Julia registry. So you need to install it directly from GitHub (see below).
 
 ## Installation
 To install the package, use the following command in the Julia REPL:
