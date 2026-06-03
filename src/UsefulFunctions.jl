@@ -19,11 +19,7 @@ end
 Useful function in Principal Value Integration.
 """
 function PrincipalValue(x, ϵ=1e-3)
-    if abs(x) < ϵ
-        return 0.0
-    else
-        return 1 / x
-    end
+    return x / (x^2 + ϵ^2)
 end
 
 """
